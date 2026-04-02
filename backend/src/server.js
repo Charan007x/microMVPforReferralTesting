@@ -28,7 +28,7 @@ const frontendPath = path.join(__dirname, '../../frontend');
 app.use(express.static(frontendPath));
 
 // Fallback to index.html for unknown routes (SPA behavior)
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
