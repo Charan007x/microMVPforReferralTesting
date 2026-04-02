@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral MVP</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; display: flex; justify-content: center; padding: 2rem; margin: 0; }
+        .container { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h1, h2, h3 { text-align: center; color: #333; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; color: #666; font-size: 0.9rem; }
+        input { width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 0.75rem; border: none; background: #007bff; color: white; border-radius: 4px; font-size: 1rem; cursor: pointer; margin-top: 0.5rem; }
+        button:hover { background: #0056b3; }
+        button.link { background: none; color: #007bff; text-decoration: underline; padding: 0; margin-top: 1rem; font-size: 0.9rem; }
+        button.link:hover { background: none; color: #0056b3; }
+        .hidden { display: none; }
+        
+        .dashboard-item { background: #f8f9fa; padding: 1rem; border-radius: 4px; margin-bottom: 1rem; text-align: center; }
+        .dashboard-item span { font-size: 1.5rem; font-weight: bold; color: #007bff; display: block; margin-top: 0.5rem; }
+        
+        #error-message { color: red; text-align: center; margin-bottom: 1rem; font-size: 0.9rem; }
+        #success-message { color: green; text-align: center; margin-bottom: 1rem; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="message-container">
+        <div id="error-message" class="hidden"></div>
+        <div id="success-message" class="hidden"></div>
+    </div>
+
+    <!-- Login View -->
+    <div id="login-view">
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-username">Username</label>
+                <input type="text" id="login-username" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <button class="link" onclick="showView('register-view')">Don't have an account? Sign up</button>
+    </div>
+
+    <!-- Register View -->
+    <div id="register-view" class="hidden">
+        <h2>Sign Up</h2>
+        <form id="register-form">
+            <div class="form-group">
+                <label for="reg-username">Username</label>
+                <input type="text" id="reg-username" required>
+            </div>
+            <div class="form-group">
+                <label for="reg-password">Password</label>
+                <input type="password" id="reg-password" required>
+            </div>
+            <div class="form-group">
+                <label for="reg-referral">Referral Code (Optional)</label>
+                <input type="text" id="reg-referral" placeholder="Paste a code here">
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <button class="link" onclick="showView('login-view')">Already have an account? Login</button>
+    </div>
+
+    <!-- Dashboard View -->
+    <div id="dashboard-view" class="hidden">
+        <h2>Welcome, <span id="display-username"></span>!</h2>
+        
+        <div class="dashboard-item">
+            Your Referral Code
+            <span id="display-refcode">...</span>
+        </div>
+        
+        <div class="dashboard-item">
+            Wallet Balance
+            <span id="display-balance">...</span>
+        </div>
+        
+        <button id="btn-subscribe" onclick="subscribe()" style="background: #28a745; margin-bottom: 1rem;">Subscribe to Premium (₹300)</button>
+        <button onclick="logout()" style="background: #dc3545;">Logout</button>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
